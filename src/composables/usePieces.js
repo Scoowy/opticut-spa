@@ -3,7 +3,9 @@ import { reactive, toRefs } from "@vue/reactivity";
 export default function () {
   const data = reactive({
     piece: null,
+    //region Description
     pieces: [],
+    //endregion
   });
 
   const addPiece = () => {
@@ -11,7 +13,7 @@ export default function () {
   };
 
   const deletePiece = (index) => {
-    if (data.pieces.length != 1) {
+    if (data.pieces.length !== 1) {
       data.pieces.splice(index, 1);
     }
   };

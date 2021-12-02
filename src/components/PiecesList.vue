@@ -14,9 +14,9 @@
   <piece
     :key="index"
     v-for="(pieceRow, index) in pieces"
-    :height="pieceRow.height"
-    :width="pieceRow.width"
-    :count="pieceRow.count"
+    v-model:height="pieceRow.height"
+    v-model:width="pieceRow.width"
+    v-model:count="pieceRow.count"
     :id="index"
     @onDeletePiece="handlerDeletePiece"
   ></piece>
@@ -61,7 +61,7 @@ export default {
     };
 
     const handlerDeletePiece = (id) => {
-      if (pieces.value.length != 1) {
+      if (pieces.value.length !== 1) {
         console.log(id);
         pieces.value.splice(id, 1);
       }
