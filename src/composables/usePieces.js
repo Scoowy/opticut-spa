@@ -9,7 +9,7 @@ export default function () {
   });
 
   const addPiece = () => {
-    data.pieces.push({ count: 1, height: 0, width: 0 });
+    data.pieces.push({ count: 0, height: 0, width: 0 });
   };
 
   const deletePiece = (index) => {

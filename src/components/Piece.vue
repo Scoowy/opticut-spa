@@ -56,7 +56,7 @@ export default {
     height: Number,
     width: Number,
   },
-  emits: ["update:height", "update:width", "update:count"],
+  emits: ["update:height", "update:width", "update:count", "onDeletePiece"],
   setup(props, { emit }) {
     const countId = computed(() => `c-${props.id}`);
     const heightId = computed(() => `h-${props.id}`);
