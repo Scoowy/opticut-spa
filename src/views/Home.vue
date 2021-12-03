@@ -1,18 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="row justify-content-center mb-5">
+    <div class="col-12 col-md-10 col-lg-6">
+      <figure class="text-center">
+        <img alt="Vue logo" src="../assets/logo.png" />
+      </figure>
+      <div class="card">
+        <cut-list />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import CutList from "@/components/CutList.vue";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
-  },
+  components: { CutList },
+  setup() {},
 };
 </script>
