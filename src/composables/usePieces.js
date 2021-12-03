@@ -18,5 +18,9 @@ export default function () {
     }
   };
 
-  return { ...toRefs(data), addPiece, deletePiece };
+  const deletePieces = () => {
+    data.pieces = [{ count: 0, height: 0, width: 0 }];
+  };
+
+  return { ...toRefs(data), addPiece, deletePiece, deletePieces };
 }
