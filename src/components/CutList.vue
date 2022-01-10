@@ -3,7 +3,7 @@
   <b-overlay :show="isSending" rounded="sm" variant="light" opacity="0.85">
     <div class="card-body">
       <h5 class="card-title">Información del cliente</h5>
-      <b-form @submit="onSubmit" @reset="onReset" v-if="showForm">
+      <b-form v-if="showForm" @submit="onSubmit" @reset="onReset">
         <b-form-group label="Cliente:" label-for="clientName">
           <b-form-input
             id="clientName"
@@ -55,15 +55,15 @@
           </h6>
         </div>
       </div>
-      <piece
-        :key="index"
+      <cut-list-piece
         v-for="(pieceRow, index) in pieces"
+        :id="index"
+        :key="index"
         v-model:height="pieceRow.height"
         v-model:width="pieceRow.width"
         v-model:count="pieceRow.count"
-        :id="index"
-        @onDeletePiece="deletePiece"
-      ></piece>
+        @on-delete-piece="deletePiece"
+      ></cut-list-piece>
 
       <b-button variant="outline-primary" @click="onAddNewPiece"
         >Añadir corte</b-button
@@ -86,23 +86,23 @@
   </b-overlay>
 </template>
 
-<script>
-import { reactive, ref } from "@vue/reactivity";
-import { onMounted } from "vue";
+<script lang="ts">
+import { reactive, ref } from '@vue/reactivity';
+import { onMounted } from 'vue';
 
-import Piece from "@/components/Piece.vue";
+import CutListPiece from '@/components/CutListPiece.vue';
 
-import usePieces from "@/composables/usePieces";
-import usePlanks from "@/composables/usePlanks";
-import useScrollBottom from "@/composables/useScrollBottom";
-import useOrders from "@/composables/useOrders";
+import usePieces from '@/composables/usePieces';
+import usePlanks from '@/composables/usePlanks';
+import useScrollBottom from '@/composables/useScrollBottom';
+import useOrders, { Order } from '@/composables/useOrders';
 
 export default {
-  name: "CutList",
-  components: { Piece },
+  name: 'CutList',
+  components: { CutListPiece },
   setup() {
-    const form = reactive({
-      client: "",
+    const form = reactive<{ client: string; plank: string | null }>({
+      client: '',
       plank: null,
     });
 
@@ -114,12 +114,13 @@ export default {
     const { scrollToBottom } = useScrollBottom();
     const { isSending, sendOrder } = useOrders();
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: Event) => {
       e.preventDefault();
 
-      const order = {
+      const order: Order = {
         ...form,
-        status: "pending",
+        status: 'pending',
+        pieces: [],
       };
 
       order.pieces = pieces.value.map((piece, index) => {
@@ -134,9 +135,9 @@ export default {
       sendOrder(order);
     };
 
-    const onReset = (e) => {
+    const onReset = (e: Event) => {
       e.preventDefault();
-      form.client = "";
+      form.client = '';
       form.plank = null;
       deletePieces();
     };

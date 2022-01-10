@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import useOrders from "@/composables/useOrders";
-import { onMounted } from "vue";
+import useOrders from '@/composables/useOrders';
+import { onMounted } from 'vue';
 
 export default {
-  name: "Orders",
+  name: 'OrdersList',
   setup() {
     const { orders, getAllOrders } = useOrders();
 

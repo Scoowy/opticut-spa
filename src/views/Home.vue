@@ -12,11 +12,10 @@
 </template>
 
 <script>
-import CutList from "@/components/CutList.vue";
+import CutList from '@/components/CutList.vue';
 
 export default {
-  name: "Home",
+  name: 'HomeView',
   components: { CutList },
-  setup() {},
 };
 </script>

@@ -1,7 +1,14 @@
-import { reactive, toRefs } from "@vue/reactivity";
+import { reactive, toRefs } from '@vue/reactivity';
+
+export interface Piece {
+  code?: number;
+  count: number;
+  height: number;
+  width: number;
+}
 
 export default function () {
-  const data = reactive({
+  const data = reactive<{ piece: null; pieces: Piece[] }>({
     piece: null,
     //region Description
     pieces: [],
@@ -12,7 +19,7 @@ export default function () {
     data.pieces.push({ count: 0, height: 0, width: 0 });
   };
 
-  const deletePiece = (index) => {
+  const deletePiece = (index: number) => {
     if (data.pieces.length !== 1) {
       data.pieces.splice(index, 1);
     }

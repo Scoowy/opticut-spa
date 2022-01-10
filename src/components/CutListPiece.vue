@@ -39,43 +39,55 @@
       </b-input-group>
     </div>
     <div class="col-1 ps-0">
-      <b-button @click="notifyDeletePiece" pill variant="outline-light">
+      <b-button pill variant="outline-light" @click="notifyDeletePiece">
         <b-icon variant="danger" icon="x-lg"></b-icon>
       </b-button>
     </div>
   </div>
 </template>
 
-<script>
-import { computed } from "@vue/reactivity";
+<script lang="ts">
+import { computed } from '@vue/reactivity';
 export default {
-  name: "Piece",
+  name: 'CutListPiece',
   props: {
-    id: Number,
-    count: Number,
-    height: Number,
-    width: Number,
+    id: {
+      type: Number,
+      default: 0,
+    },
+    count: {
+      type: Number,
+      default: 0,
+    },
+    height: {
+      type: Number,
+      default: 0,
+    },
+    width: {
+      type: Number,
+      default: 0,
+    },
   },
-  emits: ["update:height", "update:width", "update:count", "onDeletePiece"],
+  emits: ['update:height', 'update:width', 'update:count', 'on-delete-piece'],
   setup(props, { emit }) {
     const countId = computed(() => `c-${props.id}`);
     const heightId = computed(() => `h-${props.id}`);
     const widthId = computed(() => `w-${props.id}`);
 
     const notifyDeletePiece = () => {
-      emit("onDeletePiece", props.id);
+      emit('on-delete-piece', props.id);
     };
 
-    const changeCount = (newCount) => {
-      emit("update:count", parseInt(newCount));
+    const changeCount = (newCount: string) => {
+      emit('update:count', parseInt(newCount));
     };
 
-    const changeHeight = (newHeight) => {
-      emit("update:height", parseFloat(newHeight));
+    const changeHeight = (newHeight: string) => {
+      emit('update:height', parseFloat(newHeight));
     };
 
-    const changeWidth = (newWidth) => {
-      emit("update:width", parseFloat(newWidth));
+    const changeWidth = (newWidth: string) => {
+      emit('update:width', parseFloat(newWidth));
     };
 
     return {
