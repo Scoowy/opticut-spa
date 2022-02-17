@@ -11,7 +11,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  plugins: [eslintPlugin(), vue()],
+  plugins: [eslintPlugin({ throwOnWarning: false }), vue()],
   define: {
     'process.env': process.env,
   },
