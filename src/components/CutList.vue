@@ -66,14 +66,14 @@
       ></cut-list-piece>
 
       <b-button variant="outline-primary" @click="onAddNewPiece"
-        >Añadir corte</b-button
-      >
+        >Añadir corte
+      </b-button>
 
       <b-card no-body class="mt-3">
         <b-card-header header-tag="header" class="p-1 d-grid gap-2" role="tab">
           <b-button v-b-toggle.info-data variant="outline-warning"
-            >DEBUG: Form data result</b-button
-          >
+            >DEBUG: Form data result
+          </b-button>
         </b-card-header>
         <b-collapse id="info-data">
           <b-card-body>
